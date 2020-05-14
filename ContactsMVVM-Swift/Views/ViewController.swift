@@ -75,10 +75,13 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         self.deleteContact(index: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        coodinator?.contactDetail(contact: self.contacts[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -91,12 +94,15 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
         try! realm?.write {
             real.delete(contact)
             self.contacts.remove(at: index);
+            getContacts()
         }
     }
     
     func getContacts () {
         let realm = try! Realm()
         let contacts = realm.objects(Contact.self)
+        
+        self.contacts.removeAll()
         
         for contact in contacts {
             self.contacts.append(contact)
