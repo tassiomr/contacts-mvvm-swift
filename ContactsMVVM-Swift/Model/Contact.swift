@@ -7,18 +7,18 @@
 //
 
 import Foundation
+import RealmSwift
 
 
-struct Contact {
-    var id: UUID!
-    var name: String!
-    var email: String!
-    var phone: String!
+class Contact : Object {
+    @objc dynamic var id: String = UUID().uuidString
+    @objc dynamic var name: String!
+    @objc dynamic var email: String!
+    @objc dynamic var phone: String!
     
-    init(name: String, email: String, phone: String) {
-        self.id = UUID()
-        self.name = name
-        self.email = email
-        self.phone = phone
+ 
+    override static func primaryKey() -> String? {
+        return "id"
     }
+    
 }
