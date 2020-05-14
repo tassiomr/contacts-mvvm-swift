@@ -85,6 +85,10 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
     // Others functions
     func deleteContact(index: Int) {
         let real = try! Realm();
