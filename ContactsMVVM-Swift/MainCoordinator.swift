@@ -24,8 +24,12 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func changeOrCreateContact() {
+    func changeOrCreateContact(contact: Contact?) {
         let vc = ContactCreateViewController.instanciate()
+        
+        if contact != nil {
+          vc.contact = contact
+        }
         vc.coordinator = self;
         navigationController.pushViewController(vc, animated: true)
     }
