@@ -30,7 +30,16 @@ class MainCoordinator: Coordinator {
         if contact != nil {
           vc.contact = contact
         }
+        
         vc.coordinator = self;
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func contactDetail(contact: Contact) {
+        let vc = ContactDetailsViewController.instanciate();
+        
+        vc.contact = contact
+        vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
 }
