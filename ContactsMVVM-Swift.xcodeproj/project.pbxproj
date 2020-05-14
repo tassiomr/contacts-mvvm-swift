@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1814BABC246DF26D005A626E /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1814BABB246DF26D005A626E /* ContactDetailsViewController.swift */; };
 		18705626246D796100314D68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18705625246D796100314D68 /* AppDelegate.swift */; };
 		18705628246D796100314D68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18705627246D796100314D68 /* SceneDelegate.swift */; };
 		1870562A246D796100314D68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18705629246D796100314D68 /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		0D7B22BA5E7B442E9E31F21B /* Pods-ContactsMVVM-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsMVVM-Swift.release.xcconfig"; path = "Target Support Files/Pods-ContactsMVVM-Swift/Pods-ContactsMVVM-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		1814BABB246DF26D005A626E /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewController.swift; sourceTree = "<group>"; };
 		18705622246D796100314D68 /* ContactsMVVM-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ContactsMVVM-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18705625246D796100314D68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18705627246D796100314D68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				1870566A246D8DEE00314D68 /* Main.storyboard */,
 				18705629246D796100314D68 /* ViewController.swift */,
 				18705668246D86EA00314D68 /* ContactCreateViewController.swift */,
+				1814BABB246DF26D005A626E /* ContactDetailsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,7 +210,6 @@
 				795CED8C70ED62E265751A49 /* Pods-ContactsMVVM-SwiftTests.debug.xcconfig */,
 				B246A627224FAAA3AB477253 /* Pods-ContactsMVVM-SwiftTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -450,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1814BABC246DF26D005A626E /* ContactDetailsViewController.swift in Sources */,
 				1870565A246D7A8300314D68 /* Contact.swift in Sources */,
 				18705666246D849D00314D68 /* MainCoordinator.swift in Sources */,
 				1870562A246D796100314D68 /* ViewController.swift in Sources */,
