@@ -15,6 +15,8 @@
 		18705632246D796400314D68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18705630246D796400314D68 /* LaunchScreen.storyboard */; };
 		1870563D246D796400314D68 /* ContactsMVVM_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870563C246D796400314D68 /* ContactsMVVM_SwiftTests.swift */; };
 		18705648246D796400314D68 /* ContactsMVVM_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18705647246D796400314D68 /* ContactsMVVM_SwiftUITests.swift */; };
+		1870565A246D7A8300314D68 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18705659246D7A8300314D68 /* Contact.swift */; };
+		1870565C246D7A9800314D68 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870565B246D7A9800314D68 /* ContactViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		18705643246D796400314D68 /* ContactsMVVM-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ContactsMVVM-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18705647246D796400314D68 /* ContactsMVVM_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsMVVM_SwiftUITests.swift; sourceTree = "<group>"; };
 		18705649246D796400314D68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18705659246D7A8300314D68 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		1870565B246D7A9800314D68 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +103,11 @@
 		18705624246D796100314D68 /* ContactsMVVM-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				18705658246D7A6300314D68 /* Views */,
+				18705657246D7A5B00314D68 /* Model */,
+				18705656246D7A5200314D68 /* ViewModel */,
 				18705625246D796100314D68 /* AppDelegate.swift */,
 				18705627246D796100314D68 /* SceneDelegate.swift */,
-				18705629246D796100314D68 /* ViewController.swift */,
 				1870562B246D796100314D68 /* Main.storyboard */,
 				1870562E246D796400314D68 /* Assets.xcassets */,
 				18705630246D796400314D68 /* LaunchScreen.storyboard */,
@@ -126,6 +132,30 @@
 				18705649246D796400314D68 /* Info.plist */,
 			);
 			path = "ContactsMVVM-SwiftUITests";
+			sourceTree = "<group>";
+		};
+		18705656246D7A5200314D68 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1870565B246D7A9800314D68 /* ContactViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18705657246D7A5B00314D68 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18705659246D7A8300314D68 /* Contact.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18705658246D7A6300314D68 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18705629246D796100314D68 /* ViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +289,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1870565A246D7A8300314D68 /* Contact.swift in Sources */,
 				1870562A246D796100314D68 /* ViewController.swift in Sources */,
+				1870565C246D7A9800314D68 /* ContactViewModel.swift in Sources */,
 				18705626246D796100314D68 /* AppDelegate.swift in Sources */,
 				18705628246D796100314D68 /* SceneDelegate.swift in Sources */,
 			);
