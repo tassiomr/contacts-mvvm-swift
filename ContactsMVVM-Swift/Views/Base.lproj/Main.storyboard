@@ -7,20 +7,39 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Contatos-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="ContactsMVVM_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" title="Contatos" id="BYZ-38-t0r" customClass="ViewController" customModule="ContactsMVVM_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qYm-Ll-5NA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="QUL-v1-ykc"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="tqb-nP-wUX"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qYm-Ll-5NA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4LG-Kb-l9C"/>
+                            <constraint firstItem="qYm-Ll-5NA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="T0F-ar-KSd"/>
+                            <constraint firstItem="qYm-Ll-5NA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cEn-kW-Cvx"/>
+                            <constraint firstItem="qYm-Ll-5NA" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="tAE-hU-cN3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="qYm-Ll-5NA" id="DK2-Jg-Bjs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="112"/>
+            <point key="canvasLocation" x="137.68115942028987" y="111.83035714285714"/>
         </scene>
         <!--Contact Change View Controller-->
         <scene sceneID="Peb-dM-lpN">
