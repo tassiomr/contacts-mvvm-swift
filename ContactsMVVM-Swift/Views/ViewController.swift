@@ -41,6 +41,22 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
         return self.contacts.count
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        self.deleteContact(index: indexPath.row)
+    }
+    
+    func deleteContact(index: Int) {
+        let real = try! Realm();
+        
+        let contact: Contact = self.contacts[index]
+        
+        try! realm?.write {
+            real.delete(contact)
+            self.contacts.remove(at: index);
+            self.getContacts();
+        }
+    }
+    
     func getContacts () {
         let realm = try! Realm()
         let contacts = realm.objects(Contact.self)
