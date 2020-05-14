@@ -48,13 +48,72 @@
                     <view key="view" contentMode="scaleToFill" id="UKW-Zo-whw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NKR-Bb-9cs">
+                                <rect key="frame" x="32" y="108" width="350" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Laj-9u-Wom">
+                                <rect key="frame" x="32" y="158" width="350" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uo2-i9-5jR">
+                                <rect key="frame" x="32" y="208" width="350" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSv-eP-Dax">
+                                <rect key="frame" x="134" y="306" width="146" height="45"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="F1l-Fu-CXr"/>
+                                    <constraint firstAttribute="width" constant="146" id="xDE-dU-JBl"/>
+                                </constraints>
+                                <state key="normal" title="Salvar">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addNewContactWith_sender:" destination="nVJ-Zk-bYa" eventType="touchUpInside" id="031-mo-zlL"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="NKR-Bb-9cs" firstAttribute="leading" secondItem="k1p-in-MPd" secondAttribute="leading" constant="32" id="43s-tz-et0"/>
+                            <constraint firstItem="k1p-in-MPd" firstAttribute="trailing" secondItem="rSv-eP-Dax" secondAttribute="trailing" constant="134" id="97O-iK-gzS"/>
+                            <constraint firstItem="rSv-eP-Dax" firstAttribute="leading" secondItem="k1p-in-MPd" secondAttribute="leading" constant="134" id="KDK-SK-Prq"/>
+                            <constraint firstItem="Laj-9u-Wom" firstAttribute="leading" secondItem="k1p-in-MPd" secondAttribute="leading" constant="32" id="MIk-7E-PNo"/>
+                            <constraint firstItem="k1p-in-MPd" firstAttribute="trailing" secondItem="rSv-eP-Dax" secondAttribute="trailing" constant="134" id="R7P-D4-yOo"/>
+                            <constraint firstItem="k1p-in-MPd" firstAttribute="trailing" secondItem="uo2-i9-5jR" secondAttribute="trailing" constant="32" id="Sai-i3-6Ba"/>
+                            <constraint firstItem="rSv-eP-Dax" firstAttribute="top" secondItem="uo2-i9-5jR" secondAttribute="bottom" constant="64" id="UnC-rH-1ZY"/>
+                            <constraint firstItem="NKR-Bb-9cs" firstAttribute="top" secondItem="k1p-in-MPd" secondAttribute="top" constant="64" id="WeS-FQ-2Na"/>
+                            <constraint firstItem="rSv-eP-Dax" firstAttribute="top" secondItem="uo2-i9-5jR" secondAttribute="bottom" constant="64" id="Y2v-3b-zlm"/>
+                            <constraint firstItem="k1p-in-MPd" firstAttribute="trailing" secondItem="NKR-Bb-9cs" secondAttribute="trailing" constant="32" id="bHF-TE-YzO"/>
+                            <constraint firstItem="uo2-i9-5jR" firstAttribute="top" secondItem="Laj-9u-Wom" secondAttribute="bottom" constant="16" id="eQw-Wm-2fE"/>
+                            <constraint firstItem="uo2-i9-5jR" firstAttribute="leading" secondItem="k1p-in-MPd" secondAttribute="leading" constant="32" id="gOe-mL-gwc"/>
+                            <constraint firstItem="k1p-in-MPd" firstAttribute="trailing" secondItem="Laj-9u-Wom" secondAttribute="trailing" constant="32" id="kQK-D5-lLA"/>
+                            <constraint firstItem="rSv-eP-Dax" firstAttribute="leading" secondItem="k1p-in-MPd" secondAttribute="leading" constant="134" id="qBm-CC-dkt"/>
+                            <constraint firstItem="Laj-9u-Wom" firstAttribute="top" secondItem="NKR-Bb-9cs" secondAttribute="bottom" constant="16" id="w3j-c1-ZUc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="k1p-in-MPd"/>
                     </view>
+                    <connections>
+                        <outlet property="button" destination="rSv-eP-Dax" id="cOD-N1-bmb"/>
+                        <outlet property="emailTextField" destination="Laj-9u-Wom" id="0lg-no-qHx"/>
+                        <outlet property="nameTextField" destination="NKR-Bb-9cs" id="RFt-2Z-A8S"/>
+                        <outlet property="phoneTextField" destination="uo2-i9-5jR" id="uxf-tf-CTJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Frn-pS-ZLh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="887" y="109"/>
+            <point key="canvasLocation" x="886.95652173913049" y="108.48214285714285"/>
         </scene>
     </scenes>
 </document>

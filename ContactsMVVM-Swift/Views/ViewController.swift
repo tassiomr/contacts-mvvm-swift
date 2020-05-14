@@ -58,9 +58,11 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.setupUI();
+        self.setupUI()
+        self.getContacts()
     }
     
+    // Table View Functions
     func tableView(_ tableView: UITableView, cellForRowAt indexPath:            IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell");
         cell.textLabel?.text = self.contacts[indexPath.row].name;
@@ -76,6 +78,11 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
         self.deleteContact(index: indexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // Others functions
     func deleteContact(index: Int) {
         let real = try! Realm();
         
@@ -84,7 +91,6 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
         try! realm?.write {
             real.delete(contact)
             self.contacts.remove(at: index);
-            self.getContacts();
         }
     }
     
@@ -93,17 +99,16 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
         let contacts = realm.objects(Contact.self)
         
         for contact in contacts {
-            print(contact)
             self.contacts.append(contact)
         }
+        
         self.tableView.reloadData();
     }
     
     @objc func goToCreateContact() {
-        coodinator?.changeOrCreateContact();
+        coodinator?.changeOrCreateContact(contact: nil);
     }
 }
-
 
 extension ViewController {
     func setupUI () {
