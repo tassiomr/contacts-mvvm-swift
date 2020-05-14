@@ -20,8 +20,17 @@ class ContactCreateViewController : UIViewController, Storyboarded {
         super.viewDidLoad()
     
         self.realm = try! Realm()
+        self.removeButton()
+        
+        
     }
     
+    func removeButton() {
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        if let viewWithTag =  navigationBar.viewWithTag(200) {
+            viewWithTag.removeFromSuperview()
+        }
+    }
     
     @IBAction func addNewContact () {
         let realm = try! Realm()

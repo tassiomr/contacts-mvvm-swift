@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="111.83035714285714"/>
         </scene>
-        <!--Contact Change View Controller-->
+        <!--Contact Create View Controller-->
         <scene sceneID="Peb-dM-lpN">
             <objects>
-                <viewController storyboardIdentifier="ContactChangeViewController" id="nVJ-Zk-bYa" customClass="ContactChangeViewController" customModule="ContactsMVVM_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactCreateViewController" id="nVJ-Zk-bYa" customClass="ContactCreateViewController" customModule="ContactsMVVM_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UKW-Zo-whw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
