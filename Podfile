@@ -10,6 +10,7 @@ target 'ContactsMVVM-Swift' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxSwiftExt'
+  pod 'RealmSwift'
   
   target 'ContactsMVVM-SwiftTests' do
     inherit! :search_paths
