@@ -9,11 +9,13 @@
 import Foundation
 
 import Realm
+import RxSwift
 import RealmSwift
 
 
 class ContactService  {
     var realm: Realm
+    var contacts: [Contact] = [Contact]()
     
     init() {
         realm = try! Realm()
@@ -27,12 +29,12 @@ class ContactService  {
     
     func updateUser(contact: Contact) {
         let predicate = NSPredicate(format: "id = %@", contact.id.toCVarArg())
-       let updateContact = realm.objects(Contact.self).filter(predicate).first
-       try! realm.write {
+        let updateContact = realm.objects(Contact.self).filter(predicate).first
+        try! realm.write {
             updateContact?.name = contact.name
             updateContact?.email = contact.email
             updateContact?.phone = contact.phone
-       }
+        }
     }
     
     func deleteUser(contact: Contact) {
@@ -41,9 +43,17 @@ class ContactService  {
         }
     }
     
-    func getAllUser(contact: Contact) -> Results<Contact> {
-       let contacts = realm.objects(Contact.self)
+    func getAllUser() -> Observable<Results<Contact>> {
+        return Observable.create { observer -> Disposable in
+            do {
+                let contacts = self.realm.objects(Contact.self)
         
-        return contacts;
+                observer.onNext(contacts);
+                return Disposables.create { }
+            } catch {
+                observer.onError(error)
+            }
+            
+        }
     }
 }
