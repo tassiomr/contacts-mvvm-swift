@@ -25,6 +25,8 @@ private struct Const {
     static let NavBarHeightSmallState: CGFloat = 44
     /// Height of NavBar for Large state. Usually it's just 96.5 but if you have a custom font for the title, please make sure to edit this value since it changes the height for Large state of NavBar
     static let NavBarHeightLargeState: CGFloat = 96.5
+    
+    static let heightLine: CGFloat = 55.0
 }
 
 class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITableViewDataSource {
@@ -74,15 +76,29 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
         return self.contacts.count
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") {(action, view, nil) in
+            tableView.setEditing(false, animated: true)
+            self.updateContact(index: indexPath.row)
+        }
         
-        self.deleteContact(index: indexPath.row)
+        edit.backgroundColor = .link
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {(action, view, nil) in
+            self.deleteContact(index: indexPath.row)
+        }
+        delete.backgroundColor = .orange
+        
+        return UISwipeActionsConfiguration(actions: [delete, edit])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         coodinator?.contactDetail(contact: self.contacts[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Const.heightLine
     }
     
     // Others functions
@@ -96,6 +112,10 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
             self.contacts.remove(at: index);
             getContacts()
         }
+    }
+    
+    func updateContact(index: Int) {
+        coodinator?.changeOrCreateContact(contact: self.contacts[index])
     }
     
     func getContacts () {

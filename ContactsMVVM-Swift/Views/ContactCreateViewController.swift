@@ -29,6 +29,7 @@ class ContactCreateViewController : UIViewController, Storyboarded {
         self.removeButton()
         
         title = "Adicionar contato"
+        nameTextField?.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         if self.contact != nil {
             title = contact?.name
             nameTextField?.text = contact?.name
@@ -47,13 +48,43 @@ class ContactCreateViewController : UIViewController, Storyboarded {
     
     @IBAction func addNewContact (_sender: Any) {
         let realm = try! Realm()
-        try! realm.write {
-            let contact = Contact();
-            contact.email = self.emailTextField?.text
-            contact.name = self.nameTextField?.text
-            contact.phone = self.phoneTextField?.text
+        
+        if self.contact == nil {
+            try! realm.write {
+                self.contact = Contact();
+                contact?.email = self.emailTextField?.text
+                contact?.name = self.nameTextField?.text
+                contact?.phone = self.phoneTextField?.text
+                
+                realm.add(contact!)
+            }
+        } else {
+            let predicate = NSPredicate(format: "id = %@", contact!.id.toCVarArg()) 
+            let updateContact = realm.objects(Contact.self).filter(predicate).first
             
-            realm.add(contact)
+            try! realm.write {
+                updateContact?.name = self.nameTextField?.text
+                updateContact?.email = self.emailTextField?.text
+                updateContact?.phone = self.phoneTextField?.text
+            }
         }
+        
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+extension ContactCreateViewController {
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        title = textField.text
+    }
+}
+
+extension String {
+    func toString () -> String {
+        return String(self)
+    }
+    
+    func toCVarArg() -> CVarArg {
+        return self as CVarArg
     }
 }
