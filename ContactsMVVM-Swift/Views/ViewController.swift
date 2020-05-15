@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import Realm
+import RxSwift
 
 private struct Const {
     /// Buttom height/width for Large NavBar state
@@ -32,6 +33,8 @@ private struct Const {
 class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITableViewDataSource {
     
     weak var coodinator: MainCoordinator?
+    var diposeBag = DisposeBag()
+    var contactService: ContactService = ContactService();
     @IBOutlet weak var tableView: UITableView!
     var contacts = [Contact]()
     var realm: Realm?
@@ -76,7 +79,6 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
         return self.contacts.count
     }
     
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: "Edit") {(action, view, nil) in
             tableView.setEditing(false, animated: true)
@@ -103,32 +105,22 @@ class ViewController: UIViewController, Storyboarded,UITableViewDelegate, UITabl
     
     // Others functions
     func deleteContact(index: Int) {
-        let real = try! Realm();
-        
         let contact: Contact = self.contacts[index]
-        
-        try! realm?.write {
-            real.delete(contact)
-            self.contacts.remove(at: index);
-            getContacts()
-        }
+        self.contactService.deleteUser(contact: contact);
     }
-    
+
     func updateContact(index: Int) {
         coodinator?.changeOrCreateContact(contact: self.contacts[index])
     }
     
     func getContacts () {
-        let realm = try! Realm()
-        let contacts = realm.objects(Contact.self)
-        
-        self.contacts.removeAll()
-        
-        for contact in contacts {
-            self.contacts.append(contact)
-        }
-        
-        self.tableView.reloadData();
+        self.contacts.removeAll();
+        self.contactService.getAllUser().subscribe(onNext: { contacts in
+            for contact in contacts {
+                self.contacts.append(contact)
+            }
+            self.tableView.reloadData();
+        }).disposed(by: self.diposeBag)
     }
     
     @objc func goToCreateContact() {
