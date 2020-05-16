@@ -7,3 +7,21 @@
 //
 
 import Foundation
+import UIKit
+
+class Label : UILabel {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.setupUI()
+    }
+    
+    func setupUI () {
+        textColor = .gray
+        font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    }
+}
