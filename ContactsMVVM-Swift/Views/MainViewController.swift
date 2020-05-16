@@ -52,6 +52,7 @@ class MainViewController: UIViewController, Storyboarded,UITableViewDelegate, UI
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToCreateContact))
     }
+    
     // Table View Functions
     func tableView(_ tableView: UITableView, cellForRowAt indexPath:            IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell");
@@ -68,6 +69,7 @@ class MainViewController: UIViewController, Storyboarded,UITableViewDelegate, UI
         let edit = UIContextualAction(style: .normal, title: "Edit") {(action, view, nil) in
             tableView.setEditing(false, animated: true)
             self.updateContact(index: indexPath.row)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         
         edit.backgroundColor = .link
@@ -102,7 +104,6 @@ class MainViewController: UIViewController, Storyboarded,UITableViewDelegate, UI
     func updateContact(index: Int) {
         coodinator?.changeOrCreateContact(contact: self.contacts[index])
     }
-    
     
     @objc func goToCreateContact() {
         print("entrei")
