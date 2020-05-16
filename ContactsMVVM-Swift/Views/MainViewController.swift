@@ -16,6 +16,7 @@ class MainViewController: UIViewController, Storyboarded,UITableViewDelegate, UI
     var viewModel: MainViewModel! {
         didSet {
             self.contacts = viewModel.contacts
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tomato]
         }
     }
     weak var coodinator: MainCoordinator?
@@ -38,6 +39,8 @@ class MainViewController: UIViewController, Storyboarded,UITableViewDelegate, UI
         } catch let error as NSError {
             print(error)
         }
+        
+        navigationController?.navigationBar.tintColor = .tomato
     }
     
 
@@ -46,7 +49,9 @@ class MainViewController: UIViewController, Storyboarded,UITableViewDelegate, UI
     }
 
     func setupUI() {
+        
         navigationController?.navigationBar.prefersLargeTitles = true
+        
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: #selector(refreshContacts))
         
@@ -106,7 +111,6 @@ class MainViewController: UIViewController, Storyboarded,UITableViewDelegate, UI
     }
     
     @objc func goToCreateContact() {
-        print("entrei")
         coodinator?.changeOrCreateContact(contact: nil);
     }
     
