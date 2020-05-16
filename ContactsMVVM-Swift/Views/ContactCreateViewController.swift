@@ -30,20 +30,11 @@ class ContactCreateViewController : UIViewController, Storyboarded {
         self.setupBinding()
     }
     
-    func removeButton() {
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        if let viewWithTag =  navigationBar.viewWithTag(200) {
-            viewWithTag.removeFromSuperview()
-        }
-    }
-    
     @IBAction func addNewContact (_sender: Any) {
         self.viewModel.createOrUpdateUser()
         navigationController?.popViewController(animated: true)
     }
-}
 
-extension ContactCreateViewController {
     @objc func textFieldDidChange(_ textField: UITextField) {
         title = textField.text
     }
