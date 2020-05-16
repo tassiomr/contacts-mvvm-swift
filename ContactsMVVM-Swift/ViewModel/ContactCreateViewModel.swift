@@ -21,7 +21,6 @@ class ContactCreateViewModel {
     }
     
     private func initVariables() {
-        
         if self.contact != nil {
             guard let extractedContact = self.contact else { return }
             
@@ -55,5 +54,4 @@ class ContactCreateViewModel {
         }
         
     }
-    
 }
