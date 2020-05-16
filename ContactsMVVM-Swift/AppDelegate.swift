@@ -7,18 +7,13 @@
 //
 
 import UIKit
-import Realm
-import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        var config = Realm.Configuration();
-        config.fileURL = config.fileURL?.deletingLastPathComponent().appendingPathComponent("ContactMVVM-Swift.realm");
-        
-        Realm.Configuration.defaultConfiguration = config;
+    
+        RealConfigurations.instantiate()
         
         return true
     }

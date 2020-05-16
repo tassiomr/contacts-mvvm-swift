@@ -19,7 +19,7 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = ViewController.instanciate();
+        let vc = MainViewController.instanciate();
         vc.coodinator = self;
         navigationController.pushViewController(vc, animated: true)
     }
