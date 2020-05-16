@@ -14,7 +14,7 @@ import RealmSwift
 
 class ContactCreateViewController : UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
-    var realm: Realm?;
+    var viewModel: ContactCreateViewModel!
     var contact: Contact?
     
     @IBOutlet var nameTextField: UITextField?
@@ -24,19 +24,10 @@ class ContactCreateViewController : UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        self.realm = try! Realm()
-        self.removeButton()
         
-        title = "Adicionar contato"
-        nameTextField?.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        if self.contact != nil {
-            title = contact?.name
-            nameTextField?.text = contact?.name
-            emailTextField?.text = contact?.email
-            phoneTextField?.text = contact?.phone
-            button?.setTitle("Atualizar", for: .normal)
-        }
+        self.viewModel = ContactCreateViewModel(service: ContactService(), contact: self.contact)
+        self.setupTextFieldValues()
+        self.setupBinding()
     }
     
     func removeButton() {
@@ -47,28 +38,7 @@ class ContactCreateViewController : UIViewController, Storyboarded {
     }
     
     @IBAction func addNewContact (_sender: Any) {
-        let realm = try! Realm()
-        
-        if self.contact == nil {
-            try! realm.write {
-                self.contact = Contact();
-                contact?.email = self.emailTextField?.text
-                contact?.name = self.nameTextField?.text
-                contact?.phone = self.phoneTextField?.text
-                
-                realm.add(contact!)
-            }
-        } else {
-            let predicate = NSPredicate(format: "id = %@", contact!.id.toCVarArg()) 
-            let updateContact = realm.objects(Contact.self).filter(predicate).first
-            
-            try! realm.write {
-                updateContact?.name = self.nameTextField?.text
-                updateContact?.email = self.emailTextField?.text
-                updateContact?.phone = self.phoneTextField?.text
-            }
-        }
-        
+        self.viewModel.createOrUpdateUser()
         navigationController?.popViewController(animated: true)
     }
 }
@@ -77,13 +47,27 @@ extension ContactCreateViewController {
     @objc func textFieldDidChange(_ textField: UITextField) {
         title = textField.text
     }
+    
+    @objc func changeInpuValues(_ textField: UITextField) {
+        self.viewModel.name = self.nameTextField?.text ?? ""
+        self.viewModel.email = self.emailTextField?.text ?? ""
+        self.viewModel.phone = self.phoneTextField?.text ?? ""
+    }
+    
+    func setupTextFieldValues() {
+        self.nameTextField?.text = self.viewModel.contact?.name ?? ""
+        self.phoneTextField?.text = self.viewModel.contact?.phone ?? ""
+        self.emailTextField?.text = self.viewModel.contact?.email ?? ""
+    }
+    
+    func setupBinding() {
+        self.emailTextField?.addTarget(self, action: #selector(changeInpuValues(_:)), for: .editingChanged)
+        self.phoneTextField?.addTarget(self, action: #selector(changeInpuValues(_:)), for: .editingChanged)
+        self.nameTextField?.addTarget(self, action: #selector(changeInpuValues(_:)), for: .editingChanged)
+    }
 }
 
 extension String {
-    func toString () -> String {
-        return String(self)
-    }
-    
     func toCVarArg() -> CVarArg {
         return self as CVarArg
     }
