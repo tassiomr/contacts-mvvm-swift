@@ -12,6 +12,13 @@ import UIKit
 class ContactDetailsViewController : UIViewController, Storyboarded {
     var coordinator: MainCoordinator?
     var contact: Contact?
+    var viewModel: ContactDetailsViewModel! {
+        didSet {
+            nameLabel?.text = viewModel.name
+            emailLabel?.text = viewModel.email
+            phoneLabel?.text = viewModel.phone
+        }
+    }
     
     @IBOutlet var nameLabel: UILabel?
     @IBOutlet var emailLabel: UILabel?
@@ -19,10 +26,8 @@ class ContactDetailsViewController : UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        nameLabel?.text = contact?.name
-        emailLabel?.text = contact?.email
-        phoneLabel?.text = contact?.phone
+        
+        self.viewModel = ContactDetailsViewModel(contact: self.contact!)
     }
     
 }
