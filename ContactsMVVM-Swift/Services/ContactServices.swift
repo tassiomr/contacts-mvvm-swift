@@ -21,39 +21,42 @@ class ContactService  {
         realm = try! Realm()
     }
     
-    func createUser(contact: Contact) {
+    func createUser(contact: Contact, success: () -> Void, error: () -> Void) {
         try! realm.write {
             realm.add(contact)
+            success()
+            return
         }
+        
+        error()
     }
     
-    func updateUser(contact: Contact) {
+    func updateUser(contact: Contact, success: () -> Void, error: () -> Void) {
         let predicate = NSPredicate(format: "id = %@", contact.id.toCVarArg())
         let updateContact = realm.objects(Contact.self).filter(predicate).first
+        
         try! realm.write {
             updateContact?.name = contact.name
             updateContact?.email = contact.email
             updateContact?.phone = contact.phone
+            success()
+            return
         }
+        
+        error()
     }
     
-    func deleteUser(contact: Contact) {
+    func deleteUser(contact: Contact, success: () -> Void, error: () -> Void) {
         try! realm.write {
             realm.delete(contact)
+            success()
+            return
         }
+        
+        error()
     }
     
-    func getAllUser() -> Observable<Results<Contact>> {
-        return Observable.create { observer -> Disposable in
-            do {
-                let contacts = self.realm.objects(Contact.self)
-        
-                observer.onNext(contacts);
-                return Disposables.create { }
-            } catch {
-                observer.onError(error)
-            }
-            
-        }
+    func getAllUser() -> Results<Contact> {
+                return  self.realm.objects(Contact.self)
     }
 }
