@@ -26,10 +26,10 @@ class ContactServiceTest: XCTestCase {
              "email": "",
              "phone": ""])
     let contactNil: Contact = Contact(
-    value:
-        ["name": nil,
-         "email": nil,
-         "phone": nil])
+        value:
+            ["name": nil,
+             "email": nil,
+             "phone": nil])
     
     override func setUp() {
         super.setUp()
@@ -109,5 +109,18 @@ class ContactServiceTest: XCTestCase {
         
         let numberOfDb = service.getAllUser().count
         XCTAssertEqual(3, numberOfDb)
+    }
+    
+    // MARK - Testing update User
+    func testIftheUpdateMethodWorks() {
+        
+    }
+    
+    func testIfTheUpateMethodCatchNullableInfo() {
+        
+    }
+    
+    func testIfTheUpdateMethodCatchEmptyInfo (){
+      
     }
 }
