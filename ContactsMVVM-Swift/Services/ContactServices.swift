@@ -21,13 +21,21 @@ class ContactService  {
         realm = try! Realm()
     }
     
+    init(_ realmConfig: Realm.Configuration) {
+        realm = try! Realm(configuration: realmConfig)
+    }
+    
     func createUser(contact: Contact, success: () -> Void, error: () -> Void) {
-        try! realm.write {
-            realm.add(contact)
-            success()
-            return
-        }
+        let isValidContact = self.isAValidContact(contact: contact)
         
+        if isValidContact {
+            try! realm.write {
+                realm.add(contact)
+                success()
+                return
+            }
+        }
+    
         error()
     }
     
@@ -57,6 +65,26 @@ class ContactService  {
     }
     
     func getAllUser() -> Results<Contact> {
-                return  self.realm.objects(Contact.self)
+        return  self.realm.objects(Contact.self)
+    }
+}
+
+extension ContactService {
+    private func validateIfExistValueNil(contact: Contact) -> Bool {
+        if contact.email == nil || contact.name == nil || contact.phone == nil {
+            return false
+        }
+        return true
+    }
+    
+    private func validadeIfExistValueEmpty(contact: Contact) -> Bool {
+        if contact.email.isEmpty || contact.name.isEmpty || contact.phone.isEmpty {
+            return false
+        }
+        return true
+    }
+    
+    private func isAValidContact(contact: Contact) -> Bool {
+        return validateIfExistValueNil(contact: contact) && validadeIfExistValueEmpty(contact: contact)
     }
 }
