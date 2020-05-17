@@ -14,13 +14,12 @@ class ContactDetailsViewController : UIViewController, Storyboarded {
     var contact: Contact?
     var viewModel: ContactDetailsViewModel! {
         didSet {
-            nameLabel?.text = viewModel.name
             emailLabel?.text = viewModel.email
             phoneLabel?.text = viewModel.phone
+            title = viewModel.name
         }
     }
     
-    @IBOutlet var nameLabel: UILabel?
     @IBOutlet var emailLabel: UILabel?
     @IBOutlet var phoneLabel: UILabel?
     
