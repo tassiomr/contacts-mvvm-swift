@@ -39,19 +39,21 @@ class ContactService  {
         error()
     }
     
-    func updateUser(id: String, name: String?, email: String?, phone: String?, success: () -> Void, error: () -> Void) {
-        let predicate = NSPredicate(format: "id = %@", id.toCVarArg())
-        let updateContact = realm.objects(Contact.self).filter(predicate).first
+    func updateUser(contact: Contact, success: () -> Void, error: () -> Void) {
+        let predicate = NSPredicate(format: "id = %@", contact.id.toCVarArg())
+        let name = contact.name
+        let email = contact.email
+        let phone = contact.phone
         
         try! realm.write {
-            updateContact?.name = name
-            updateContact?.email = email
-            updateContact?.phone = phone
-            success()
-            return
+            if let updateContact = realm.objects(Contact.self).filter(predicate).first {
+                updateContact.name = name
+                updateContact.email = email
+                updateContact.phone = phone
+                success()
+                return
+            }
         }
-        
-        error()
     }
     
     func deleteUser(contact: Contact, success: () -> Void, error: () -> Void) {
