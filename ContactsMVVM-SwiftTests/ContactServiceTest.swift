@@ -20,12 +20,47 @@ class ContactServiceTest: XCTestCase {
          "email": "tassio@email.com",
          "phone": "+5531994731494"])
     
+    let contactEmpty: Contact = Contact(
+        value:
+            ["name": "",
+             "email": "",
+             "phone": ""])
+    let contactNil: Contact = Contact(
+    value:
+        ["name": nil,
+         "email": nil,
+         "phone": nil])
+    
     override func setUp() {
         super.setUp()
         
         var config = Realm.Configuration();
         config.inMemoryIdentifier = self.name
         service = ContactService(config)
+        self.seedDatabase()
+    }
+    
+    func seedDatabase () {
+        let contact2 = Contact(value: ["name": "Tássio Marcos",
+        "email": "tassio@email.com",
+        "phone": "+5531994731494"])
+        let contact3 = Contact(value: ["name": "Tássio Marcos",
+        "email": "tassio@email.com",
+        "phone": "+5531994731494"])
+        let contact4 = Contact(value: ["name": "Tássio Marcos",
+        "email": "tassio@email.com",
+        "phone": "+5531994731494"])
+        
+        let contacts: [Contact] = [contact, contact2, contact3, contact4];
+        
+        for contact in contacts {
+            service.createUser(contact: contact, success: {
+                return
+            }) {
+                return
+            }
+        }
+        
     }
     
     // MARK - Testing Create User
@@ -36,37 +71,43 @@ class ContactServiceTest: XCTestCase {
             return
         }
         
-        guard let expectedUser = self.realm.objects(Contact.self).first else { return }
+        guard let expectedUser: Contact = service.getAllUser().first else { return }
         XCTAssertEqual(contact, expectedUser)
         
     }
     
     func testIfTheSaveMethodCatchNullableInfo() {
-        // MARK - When Name is nil
-        contact.name = nil
-    
-        service.createUser(contact: contact, success: {
+        service.createUser(contact: contactNil, success: {
             return
         }) {
             return
         }
     
         let numberOfDb = service.getAllUser().count
-        XCTAssertEqual(0, numberOfDb)
+        XCTAssertEqual(4, numberOfDb)
     }
     
     func testIfTheSaveMethodCatchEmptyInfo (){
-        contact.name = ""
-        
-        service.createUser(contact: contact, success: {
+        service.createUser(contact: contactEmpty, success: {
             return
         }) {
             return
         }
         
         let numberOfDb = service.getAllUser().count
-        XCTAssertEqual(0, numberOfDb)
+        XCTAssertEqual(4, numberOfDb)
     }
     
-
+    // Mark - Testing delete contact
+    func testDeleteContactIsWork() {
+        
+        service.deleteUser(contact: contact, success: {
+            return
+        }) {
+            return
+        }
+        
+        let numberOfDb = service.getAllUser().count
+        XCTAssertEqual(3, numberOfDb)
+    }
 }
