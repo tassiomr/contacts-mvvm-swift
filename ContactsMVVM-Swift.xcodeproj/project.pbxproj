@@ -29,6 +29,8 @@
 		18EC4FD72470736B003DEE53 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4FD62470736B003DEE53 /* TextField.swift */; };
 		18EC4FD924708AD4003DEE53 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4FD824708AD4003DEE53 /* Label.swift */; };
 		18EC4FDB24708D4C003DEE53 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4FDA24708D4C003DEE53 /* Button.swift */; };
+		18EC4FDD2471769F003DEE53 /* CreateContactViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4FDC2471769F003DEE53 /* CreateContactViewModelTest.swift */; };
+		18EC4FDF247178AE003DEE53 /* ContactServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EC4FDE247178AE003DEE53 /* ContactServiceTest.swift */; };
 		1B584C80C318C50702DCB21E /* Pods_ContactsMVVM_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECACBCB89946D03935946BB /* Pods_ContactsMVVM_Swift.framework */; };
 		354C013DE6778A87B579F3A3 /* Pods_ContactsMVVM_Swift_ContactsMVVM_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39807C61E8FA18D99735B095 /* Pods_ContactsMVVM_Swift_ContactsMVVM_SwiftUITests.framework */; };
 		3EDACB952C12F48E2C024619 /* Pods_ContactsMVVM_SwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88337BFE867D0EDFB0BDA69D /* Pods_ContactsMVVM_SwiftTests.framework */; };
@@ -81,6 +83,8 @@
 		18EC4FD62470736B003DEE53 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		18EC4FD824708AD4003DEE53 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		18EC4FDA24708D4C003DEE53 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		18EC4FDC2471769F003DEE53 /* CreateContactViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContactViewModelTest.swift; sourceTree = "<group>"; };
+		18EC4FDE247178AE003DEE53 /* ContactServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactServiceTest.swift; sourceTree = "<group>"; };
 		21793883931B3E262FEF62D8 /* Pods-ContactsMVVM-Swift-ContactsMVVM-SwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsMVVM-Swift-ContactsMVVM-SwiftUITests.debug.xcconfig"; path = "Target Support Files/Pods-ContactsMVVM-Swift-ContactsMVVM-SwiftUITests/Pods-ContactsMVVM-Swift-ContactsMVVM-SwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		39807C61E8FA18D99735B095 /* Pods_ContactsMVVM_Swift_ContactsMVVM_SwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactsMVVM_Swift_ContactsMVVM_SwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ECACBCB89946D03935946BB /* Pods_ContactsMVVM_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactsMVVM_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +179,8 @@
 			children = (
 				1870563C246D796400314D68 /* ContactsMVVM_SwiftTests.swift */,
 				1870563E246D796400314D68 /* Info.plist */,
+				18EC4FDC2471769F003DEE53 /* CreateContactViewModelTest.swift */,
+				18EC4FDE247178AE003DEE53 /* ContactServiceTest.swift */,
 			);
 			path = "ContactsMVVM-SwiftTests";
 			sourceTree = "<group>";
@@ -521,6 +527,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EC4FDD2471769F003DEE53 /* CreateContactViewModelTest.swift in Sources */,
+				18EC4FDF247178AE003DEE53 /* ContactServiceTest.swift in Sources */,
 				1870563D246D796400314D68 /* ContactsMVVM_SwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
