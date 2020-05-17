@@ -14,17 +14,21 @@ class ContactServiceTest: XCTestCase {
 
     var service: ContactService!
     var realm: Realm!
-    let contact: Contact = Contact(value: ["name": "Tássio Marcos", "email": "tassio@email.com", "phone": "+5531994731494"])
+    let contact: Contact = Contact(
+        value:
+        ["name": "Tássio Marcos",
+         "email": "tassio@email.com",
+         "phone": "+5531994731494"])
     
     override func setUp() {
         super.setUp()
         
         var config = Realm.Configuration();
         config.inMemoryIdentifier = self.name
-        
         service = ContactService(config)
     }
     
+    // MARK - Testing Create User
     func testIftheSaveMethodWorks() {
         service.createUser(contact: contact, success: {
             return
@@ -61,27 +65,8 @@ class ContactServiceTest: XCTestCase {
         }
         
         let numberOfDb = service.getAllUser().count
-        
         XCTAssertEqual(0, numberOfDb)
     }
     
-    
-    func testIfAllFieldWithValues() {
-        
-    }
-    
-    func testIfNameIsCorrectNumberOfCaracters() {
-        contact.name = "T"
-        
-        service.createUser(contact: contact, success: {
-            return
-        }) {
-            return
-        }
-        
-        let numberOfDb = service.getAllUser().count
-        
-        XCTAssertEqual(0, numberOfDb)
-    
-    }
+
 }
