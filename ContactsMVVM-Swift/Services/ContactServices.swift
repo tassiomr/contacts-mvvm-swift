@@ -21,29 +21,39 @@ class ContactService  {
         realm = try! Realm()
     }
     
+    init(_ realmConfig: Realm.Configuration) {
+        realm = try! Realm(configuration: realmConfig)
+    }
+    
     func createUser(contact: Contact, success: () -> Void, error: () -> Void) {
-        try! realm.write {
-            realm.add(contact)
-            success()
-            return
-        }
+        let isValidContact = self.isAValidContact(contact: contact)
         
+        if isValidContact {
+            try! realm.write {
+                realm.add(contact)
+                success()
+                return
+            }
+        }
+    
         error()
     }
     
-    func updateUser(id: String, name: String?, email: String?, phone: String?, success: () -> Void, error: () -> Void) {
-        let predicate = NSPredicate(format: "id = %@", id.toCVarArg())
-        let updateContact = realm.objects(Contact.self).filter(predicate).first
+    func updateUser(contact: Contact, success: () -> Void, error: () -> Void) {
+        let predicate = NSPredicate(format: "id = %@", contact.id.toCVarArg())
+        let name = contact.name
+        let email = contact.email
+        let phone = contact.phone
         
         try! realm.write {
-            updateContact?.name = name
-            updateContact?.email = email
-            updateContact?.phone = phone
-            success()
-            return
+            if let updateContact = realm.objects(Contact.self).filter(predicate).first {
+                updateContact.name = name
+                updateContact.email = email
+                updateContact.phone = phone
+                success()
+                return
+            }
         }
-        
-        error()
     }
     
     func deleteUser(contact: Contact, success: () -> Void, error: () -> Void) {
@@ -57,6 +67,26 @@ class ContactService  {
     }
     
     func getAllUser() -> Results<Contact> {
-                return  self.realm.objects(Contact.self)
+        return  self.realm.objects(Contact.self)
+    }
+}
+
+extension ContactService {
+    private func validateIfExistValueNil(contact: Contact) -> Bool {
+        if contact.email == nil || contact.name == nil || contact.phone == nil {
+            return false
+        }
+        return true
+    }
+    
+    private func validadeIfExistValueEmpty(contact: Contact) -> Bool {
+        if contact.email.isEmpty || contact.name.isEmpty || contact.phone.isEmpty {
+            return false
+        }
+        return true
+    }
+    
+    private func isAValidContact(contact: Contact) -> Bool {
+        return validateIfExistValueNil(contact: contact) && validadeIfExistValueEmpty(contact: contact)
     }
 }

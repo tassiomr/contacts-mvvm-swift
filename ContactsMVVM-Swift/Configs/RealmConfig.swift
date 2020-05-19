@@ -17,8 +17,7 @@ struct RealConfigurations {
    static func instantiate () {
         // Override point for customization after application launch.
         var config = Realm.Configuration();
-        config.fileURL = config.fileURL?.deletingLastPathComponent().appendingPathComponent("ContactMVVM-Swift.realm");
-        
+            config.fileURL = config.fileURL?.deletingLastPathComponent().appendingPathComponent("ContactMVVM-Swift.realm");
         Realm.Configuration.defaultConfiguration = config;
     }
 }

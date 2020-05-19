@@ -41,16 +41,12 @@ class ContactCreateViewModel {
                 return
             }
         } else {
-            guard let contact = self.contact else { return }            
-            self.service.updateUser(id: contact.id, name: self.name, email: self.email
-                , phone: self.phone, success: {
-                //success
+            guard let contact = self.contact else { return }
+            self.service.updateUser(contact: contact, success: {
                 return
-            }, error: {
-                // error
+            }) {
                 return
-            })
-            
+            }
         }
         
     }
