@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import Realm
 import RealmSwift
-
+import RxSwift
+import RxCocoa
 
 class ContactCreateViewController : UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
@@ -42,16 +43,11 @@ class ContactCreateViewController : UIViewController, Storyboarded {
                             service: ContactService(),
                             contact: self.contact)
         self.setupBinding()
-        self.setupUI()
     }
     
     @IBAction func addNewContact (_sender: Any) {
         self.viewModel.createOrUpdateUser()
         navigationController?.popViewController(animated: true)
-    }
-    
-    func setupUI () {
-        
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -59,22 +55,37 @@ class ContactCreateViewController : UIViewController, Storyboarded {
     }
     
     @objc func changeInpuValues(_ textField: UITextField) {
-        self.viewModel.name = self.nameTextField?.text ?? ""
-        self.viewModel.email = self.emailTextField?.text ?? ""
-        self.viewModel.phone = self.phoneTextField?.text ?? ""
-        
-        if self.viewModel.name.isEmpty  {
+
+        if self.viewModel.nameText.value.isEmpty  {
             title = "Adicionar Contato"
         } else {
-            title = self.viewModel.name
+            title = self.viewModel.nameText.value
         }
     }
     
     
     func setupBinding() {
-        self.emailTextField?.addTarget(self, action: #selector(changeInpuValues(_:)), for: .editingChanged)
-        self.phoneTextField?.addTarget(self, action: #selector(changeInpuValues(_:)), for: .editingChanged)
-        self.nameTextField?.addTarget(self, action: #selector(changeInpuValues(_:)), for: .editingChanged)
+       _ = emailTextField?
+            .rx
+            .text
+            .map { $0 ?? "" }
+            .bind(to: viewModel.emailText)
+        _ = phoneTextField?
+            .rx
+            .text
+            .map { $0 ?? "" }
+            .bind(to: viewModel.phoneText)
+        _ = nameTextField?
+            .rx
+            .text
+            .map { $0 ?? "" }
+            .bind(to: viewModel.nameText)
+        
+       _ = viewModel.isValid.bind(to: (button?.rx.isEnabled)!)
+        viewModel.isValid.subscribe(onNext: {
+            isValid in
+            self.title = isValid ? "Enabled" : self.title
+        }).disposed(by: DisposeBag())
     }
 }
 

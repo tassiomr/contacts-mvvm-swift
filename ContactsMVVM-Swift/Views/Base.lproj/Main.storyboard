@@ -223,7 +223,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.75295144319999996" green="0.75292283299999996" blue="0.75294226409999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="qTZ-PI-a5T" secondAttribute="trailing" constant="32" id="EIU-3T-a6r"/>
                                     <constraint firstAttribute="trailing" secondItem="KF1-zf-p9N" secondAttribute="trailing" constant="64" id="FJn-lG-c6v"/>
@@ -239,6 +239,7 @@
                                     <constraint firstItem="wyr-hL-gdq" firstAttribute="leading" secondItem="meB-2n-JAs" secondAttribute="leading" constant="32" id="nN5-y5-TiV"/>
                                     <constraint firstAttribute="bottom" secondItem="Bps-iz-Yy1" secondAttribute="bottom" constant="64" id="sEP-X4-jep"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bps-iz-Yy1" secondAttribute="trailing" constant="20" symbolic="YES" id="sy3-lB-HlY"/>
+                                    <constraint firstItem="qTZ-PI-a5T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bps-iz-Yy1" secondAttribute="trailing" constant="8" symbolic="YES" id="tn7-TD-2ID"/>
                                     <constraint firstItem="Zak-Va-auO" firstAttribute="leading" secondItem="meB-2n-JAs" secondAttribute="leading" constant="32" id="udY-Of-5GF"/>
                                     <constraint firstItem="e4L-H5-48Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zak-Va-auO" secondAttribute="trailing" constant="8" symbolic="YES" id="v54-rs-GAU"/>
                                     <constraint firstAttribute="trailing" secondItem="e4L-H5-48Y" secondAttribute="trailing" constant="49" id="yuv-11-tq4"/>
